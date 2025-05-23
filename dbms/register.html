@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Fresh Delight - Supplier Portal</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-green-50 font-sans">
+  <header class="bg-white shadow p-4 flex justify-between items-center">
+    <h1 class="text-2xl font-bold text-green-700">Fresh Delight</h1>
+    <nav>
+      <a href="/" class="text-green-600 hover:underline mr-4">Home</a>
+      <a href="/suppliers" class="text-green-600 hover:underline">Supplier Login</a>
+    </nav>
+  </header>
+
+  <main class="max-w-4xl mx-auto mt-10 p-6 bg-white rounded shadow">
+    <h2 class="text-xl font-semibold mb-6 text-green-800">Supplier Registration</h2>
+
+    <form class="space-y-4">
+      <div>
+        <label class="block text-sm font-medium text-gray-700">Company Name</label>
+        <input type="text" class="w-full border border-gray-300 rounded px-3 py-2" placeholder="e.g. Farm Fresh Ltd">
+      </div>
+
+      <div>
+        <label class="block text-sm font-medium text-gray-700">Contact Person</label>
+        <input type="text" class="w-full border border-gray-300 rounded px-3 py-2" placeholder="Your Name">
+      </div>
+
+      <div>
+        <label class="block text-sm font-medium text-gray-700">Email Address</label>
+        <input type="email" class="w-full border border-gray-300 rounded px-3 py-2" placeholder="email@example.com">
+      </div>
+
+      <div>
+        <label class="block text-sm font-medium text-gray-700">Phone Number</label>
+        <input type="tel" class="w-full border border-gray-300 rounded px-3 py-2" placeholder="+91 9876543210">
+      </div>
+
+      <div>
+        <label class="block text-sm font-medium text-gray-700">Type of Products</label>
+        <input type="text" class="w-full border border-gray-300 rounded px-3 py-2" placeholder="e.g. Dairy, Vegetables, Baked Goods">
+      </div>
+
+      <div class="flex justify-end">
+        <button type="submit" class="bg-green-600 text-white px-5 py-2 rounded hover:bg-green-700">Register</button>
+      </div>
+    </form>
+  </main>
+
+  <footer class="mt-10 text-center text-sm text-gray-500 py-6">
+    &copy; 2025 Fresh Delight. All rights reserved.
+  </footer>
+</body>
+</html>

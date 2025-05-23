@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Your Cart</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(to right, #f0f8ff, #e0f7fa);
+      margin: 0;
+      padding: 30px;
+    }
+
+    .cart-container {
+      max-width: 600px;
+      margin: auto;
+      background: #ffffff;
+      border-radius: 20px;
+      padding: 25px;
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+    }
+
+    h1 {
+      text-align: center;
+      color: #003366;
+    }
+
+    ul {
+      list-style: none;
+      padding: 0;
+      margin: 20px 0;
+    }
+
+    li {
+      display: flex;
+      justify-content: space-between;
+      padding: 15px;
+      background: #f0f8ff;
+      border: 2px solid #cce7ff;
+      border-radius: 10px;
+      margin-bottom: 10px;
+    }
+
+    .total {
+      text-align: right;
+      font-size: 20px;
+      font-weight: bold;
+      color: #2e7d32;
+      margin-top: 20px;
+    }
+
+    #checkout-btn {
+      display: block;
+      width: 100%;
+      padding: 12px;
+      margin-top: 20px;
+      background: linear-gradient(to right, #4CAF50, #66BB6A);
+      color: white;
+      font-size: 16px;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    #checkout-btn:hover {
+      background: linear-gradient(to right, #388e3c, #4CAF50);
+    }
+  </style>
+</head>
+<body>
+
+  <div class="cart-container">
+    <h1>🛒 Your Cart</h1>
+    <ul id="cart-list">
+    </ul>
+    <div class="total">Total: ₹<span id="total-price"></span></div>
+    <button id="checkout-btn">Proceed to Checkout</button>
+  </div>
+
+<script>
+  const cartList = document.getElementById("cart-list");
+  const cartItems = JSON.parse(localStorage.getItem("cartItems") || "[]");
+
+  if (cartItems.length === 0) {
+    cartList.innerHTML = "<li>Your cart is empty. Go back and add some products!</li>";
+    document.getElementById("checkout-btn").style.display = "none";
+  } else {
+    cartItems.forEach((item, index) => {
+      const cartItem = document.createElement("li");
+      cartItem.textContent = `${item.name} x ${item.quantity} = ₹${item.price * item.quantity}`;
+
+      const deleteButton = document.createElement("button");
+      deleteButton.textContent = "Delete";
+      deleteButton.onclick = () => {
+        cartItems.splice(index, 1);
+        localStorage.setItem("cartItems", JSON.stringify(cartItems));
+        window.location.reload();
+      };
+
+      cartItem.appendChild(deleteButton);
+      cartList.appendChild(cartItem);
+    });
+
+    const totalPrice = cartItems.reduce((acc, item) => acc + item.price * item.quantity, 0);
+    document.getElementById("total-price").textContent = totalPrice;
+  }
+
+  // Simulate Checkout
+  document.getElementById("checkout-btn").onclick = () => {
+    alert("Thank you for your order!");
+    localStorage.removeItem("cartItems");
+    window.location.reload();
+  };
+</script>
+
+
+</body>
+</html>

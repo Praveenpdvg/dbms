@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Login / Register</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html, body {
+      height: 100%;
+      font-family: 'Segoe UI', sans-serif;
+    }
+
+    body {
+      background: url('/background.jpg') no-repeat center center fixed;
+      background-size: cover;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .overlay {
+      background-color: rgba(0, 0, 0, 0.9);
+      padding: 40px 30px;
+      border-radius: 15px;
+      width: 350px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+      backdrop-filter: blur(6px);
+    }
+
+    h2 {
+      text-align: center;
+      margin-bottom: 25px;
+      color: #2e8b57;
+      font-size: 26px;
+    }
+
+    input {
+      width: 100%;
+      padding: 12px 15px;
+      margin: 10px 0;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      font-size: 15px;
+    }
+
+    input:focus {
+      border-color: #2ecc71;
+      outline: none;
+    }
+
+    button {
+      width: 100%;
+      padding: 12px;
+      background: linear-gradient(to right, #2ecc71, #27ae60);
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-size: 16px;
+      font-weight: bold;
+      cursor: pointer;
+      margin-top: 10px;
+    }
+
+    button:hover {
+      background: linear-gradient(to right, #27ae60, #219150);
+    }
+
+    #toggle {
+      text-align: center;
+      margin-top: 20px;
+      cursor: pointer;
+      color: #2e8b57;
+      font-weight: bold;
+    }
+
+    #toggle:hover {
+      color: #1e6b43;
+    }
+
+    @media (max-width: 480px) {
+      .overlay {
+        width: 90%;
+        padding: 30px 20px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<div class="overlay">
+  <h2 id="formTitle">Login</h2>
+  <form id="userForm">
+    <input type="text" name="name" placeholder="Full Name" id="nameField" style="display: none;">
+    <input type="email" name="email" placeholder="Email Address" required>
+    <input type="password" name="password" placeholder="Password" required>
+    <p style="color: azure;">Are you a:
+      <select id="userType" style="color: #27ae60;">
+        <option value="customer">Customer</option>
+        <option value="supplier">Supplier</option>
+      </select>
+    </p>
+    <button type="submit" id="submitBtn">Login</button>
+  </form>
+  <div id="toggle" onclick="toggleForm()">Don't have an account? Register</div> 
+</div>
+
+<script>
+  let isLogin = true;
+
+  function toggleForm() {
+    isLogin = !isLogin;
+    document.getElementById('formTitle').textContent = isLogin ? 'Login' : 'Register';
+    document.getElementById('nameField').style.display = isLogin ? 'none' : 'block';
+    document.getElementById('submitBtn').textContent = isLogin ? 'Login' : 'Register';
+    document.getElementById('toggle').textContent = isLogin
+      ? "Don't have an account? Register"
+      : "Already have an account? Login";
+  }
+
+  document.getElementById('userForm').addEventListener('submit', function(event) {
+    event.preventDefault();
+
+    // Simulate successful login/register
+    const name = document.getElementById('nameField').value;
+    const email = this.email.value;
+    const userType = document.getElementById('userType').value;
+
+    // Save to localStorage (for demo)
+    localStorage.setItem('user', JSON.stringify({
+      name: name || email,
+      email: email,
+      userType: userType
+    }));
+
+    // Redirect to index.html
+    window.location.href = 'index.html';
+  });
+</script>
+
+</body>
+</html>
